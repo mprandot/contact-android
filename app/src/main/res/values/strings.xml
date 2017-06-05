@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Agenda telefônica</string>
+    <string name="button_add">Adicionar contato</string>
+    <string name="button_search">Procurar contato</string>
+    <string name="name">Nome</string>
+    <string name="address">Endereço</string>
+    <string name="city">Cidade</string>
+    <string name="phone1">Telefone</string>
+    <string name="phone2">Telefone 2</string>
+</resources>
