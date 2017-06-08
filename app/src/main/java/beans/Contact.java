@@ -74,4 +74,9 @@ public class Contact implements Serializable {
     public void setPhone2(String phone2) {
         this.phone2 = phone2;
     }
+
+    @Override
+    public String toString() {
+        return name + " - " + phone1 + " - " + phone2;
+    }
 }

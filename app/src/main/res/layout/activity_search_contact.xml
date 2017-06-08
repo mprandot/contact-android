@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dev.marcio.contactproject.SearchContact"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.dev.marcio.contactproject.SearchContact">
 
 
     <EditText
@@ -13,21 +13,17 @@
         android:layout_height="wrap_content"
         android:hint="@string/search_label" />
 
-
-
-    <LinearLayout
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context="br.com.upf.appandroid.ListaActivity">
+        android:onClick="searchContact"
+        android:text="@string/button_search" />
 
-        <ListView
-            android:id="@+id/listContacts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </ListView>
-
-
-    </LinearLayout>
+    <ListView
+        android:id="@+id/listContacts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
 
 
 </LinearLayout>

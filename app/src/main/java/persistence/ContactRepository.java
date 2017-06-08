@@ -3,11 +3,15 @@ package persistence;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.dev.marcio.contactproject.MainActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import beans.Contact;
 
@@ -33,8 +37,10 @@ public class ContactRepository {
             values.put("phone2", contact.getPhone2());
 
             if (contact.getId() == null) {
+                Log.d(getClass().getSimpleName(), "Inserting...");
                 db.insertOrThrow("contacts", (String) null, values);
             } else {
+                Log.d(getClass().getSimpleName(), "Updating...");
                 db.update("contacts", values, "id = ?", new String[]{String.valueOf(contact.getId())});
             }
             Log.d(getClass().getSimpleName(), "SUCESSO!!!!!!!!!!!!!!!!");
@@ -44,6 +50,63 @@ public class ContactRepository {
         } finally {
             db.close();
         }
+
+    }
+
+
+    public ArrayList<Contact> searchContact(String filter) {
+
+        SQLiteDatabase db = this.connectionSqLite.getReadableDatabase();
+
+
+        ArrayList<Contact> contacts = new ArrayList<Contact>();
+
+        try {
+            Cursor cursor = db.query(false, "contacts", new String[]{}, "name LIKE ?", new String[]{"%" + filter + "%"}, null, null, null,
+                    null);
+
+            if(cursor.getCount()!=0){
+                if(cursor.moveToFirst()){
+                    do{
+                        Contact contact = new Contact();
+                        contact.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                        contact.setName(cursor.getString(cursor.getColumnIndex("name")));
+                        contact.setAddress(cursor.getString(cursor.getColumnIndex("address")));
+                        contact.setCity(cursor.getString(cursor.getColumnIndex("city")));
+                        contact.setPhone1(cursor.getString(cursor.getColumnIndex("phone1")));
+                        contact.setPhone2(cursor.getString(cursor.getColumnIndex("phone2")));
+
+                        contacts.add(contact);
+
+                    }while(cursor.moveToNext());
+                }
+
+                cursor.close();
+            }
+
+
+            return contacts;
+        } catch (Exception ex) {
+            Log.e(this.getClass().getSimpleName(), "Erro na consulta", ex);
+            return null;
+        } finally {
+            db.close();
+        }
+    }
+
+    public boolean destroy(Integer id) throws Exception {
+        SQLiteDatabase db = this.connectionSqLite.getWritableDatabase();
+
+        try {
+            db.delete("contacts", "id = ?", new String[]{String.valueOf(id)});
+        } catch (Exception ex) {
+            Log.e(this.getClass().getSimpleName(), "Erro ao deletar", ex);
+            return false;
+        } finally {
+            db.close();
+        }
+
+        return true;
 
     }
 }
