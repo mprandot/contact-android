@@ -62,12 +62,18 @@ public class ContactRepository {
         ArrayList<Contact> contacts = new ArrayList<Contact>();
 
         try {
-            Cursor cursor = db.query(false, "contacts", new String[]{}, "name LIKE ?", new String[]{"%" + filter + "%"}, null, null, null,
-                    null);
+            Cursor cursor;
 
-            if(cursor.getCount()!=0){
-                if(cursor.moveToFirst()){
-                    do{
+            if (filter.length() > 0) {
+                cursor = db.query(false, "contacts", new String[]{}, "name LIKE ?", new String[]{"%" + filter + "%"}, null, null, null,
+                        null);
+            } else {
+                cursor = db.rawQuery("select * from contacts order by name", null);
+            }
+
+            if (cursor.getCount() != 0) {
+                if (cursor.moveToFirst()) {
+                    do {
                         Contact contact = new Contact();
                         contact.setId(cursor.getInt(cursor.getColumnIndex("id")));
                         contact.setName(cursor.getString(cursor.getColumnIndex("name")));
@@ -78,7 +84,7 @@ public class ContactRepository {
 
                         contacts.add(contact);
 
-                    }while(cursor.moveToNext());
+                    } while (cursor.moveToNext());
                 }
 
                 cursor.close();

@@ -1,9 +1,11 @@
 package com.dev.marcio.contactproject;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import beans.Contact;
 import persistence.ContactRepository;
@@ -37,6 +39,9 @@ public class AddContact extends AppCompatActivity {
 
         contactRepository.store(contact);
 
+        Toast.makeText(AddContact.this, "Contato adicionado!", Toast.LENGTH_SHORT).show();
 
+        Intent searchContact = new Intent(this, SearchContact.class);
+        startActivity(searchContact);
     }
 }

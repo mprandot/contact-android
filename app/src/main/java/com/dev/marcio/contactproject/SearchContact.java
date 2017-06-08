@@ -48,12 +48,9 @@ public class SearchContact extends AppCompatActivity {
 
         ArrayList<Contact> contacts = cr.searchContact(search.getText().toString());
 
-        Toast.makeText(SearchContact.this, contacts.size() + "", Toast.LENGTH_LONG).show();
-
         ArrayAdapter<Contact> adapter = new ArrayAdapter<Contact>(this,
                 android.R.layout.simple_list_item_1, contacts);
         listView.setAdapter(adapter);
-
     }
 
     private void showContactDetails(Contact contact) {
