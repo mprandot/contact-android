@@ -35,6 +35,7 @@ public class ContactRepository {
             values.put("address", contact.getAddress());
             values.put("phone1", contact.getPhone1());
             values.put("phone2", contact.getPhone2());
+            values.put("pic", contact.getPic());
 
             if (contact.getId() == null) {
                 Log.d(getClass().getSimpleName(), "Inserting...");
@@ -50,16 +51,12 @@ public class ContactRepository {
         } finally {
             db.close();
         }
-
     }
-
 
     public ArrayList<Contact> searchContact(String filter) {
 
         SQLiteDatabase db = this.connectionSqLite.getReadableDatabase();
-
-
-        ArrayList<Contact> contacts = new ArrayList<Contact>();
+        ArrayList<Contact> contacts = new ArrayList<>();
 
         try {
             Cursor cursor;
@@ -71,7 +68,7 @@ public class ContactRepository {
                 cursor = db.rawQuery("select * from contacts order by name", null);
             }
 
-            if (cursor.getCount() != 0) {
+            if (cursor.getCount() >0) {
                 if (cursor.moveToFirst()) {
                     do {
                         Contact contact = new Contact();
@@ -81,7 +78,7 @@ public class ContactRepository {
                         contact.setCity(cursor.getString(cursor.getColumnIndex("city")));
                         contact.setPhone1(cursor.getString(cursor.getColumnIndex("phone1")));
                         contact.setPhone2(cursor.getString(cursor.getColumnIndex("phone2")));
-
+                        contact.setPic(cursor.getBlob(cursor.getColumnIndex("pic")));
                         contacts.add(contact);
 
                     } while (cursor.moveToNext());

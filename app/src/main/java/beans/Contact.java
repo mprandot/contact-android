@@ -1,6 +1,9 @@
 package beans;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
+import java.sql.Blob;
 
 /**
  * Created by marcio on 04/06/17.
@@ -13,18 +16,19 @@ public class Contact implements Serializable {
     private String city;
     private String phone1;
     private String phone2;
+    private byte[] pic;
 
     public Contact() {
     }
 
-    public Contact(String name, String address, String city, String phone1, String phone2) {
+    public Contact(String name, String address, String city, String phone1, String phone2, byte[] pic) {
         this.name = name;
         this.address = address;
         this.city = city;
         this.phone1 = phone1;
         this.phone2 = phone2;
+        this.pic = pic;
     }
-
 
     public Integer getId() {
         return id;
@@ -73,6 +77,14 @@ public class Contact implements Serializable {
 
     public void setPhone2(String phone2) {
         this.phone2 = phone2;
+    }
+
+    public byte[] getPic() {
+        return pic;
+    }
+
+    public void setPic(byte[] pic) {
+        this.pic = pic;
     }
 
     @Override

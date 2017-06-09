@@ -50,6 +50,17 @@
                 android:layout_weight="1"
                 android:hint="@string/phone2" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:maxHeight="20dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_getImage"
+                android:onClick="selectPic"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -58,8 +69,11 @@
                 android:onClick="storeContact"/>
 
 
+
         </LinearLayout>
 
 
     </ScrollView>
+
+
 </LinearLayout>

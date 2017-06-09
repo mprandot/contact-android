@@ -16,6 +16,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="129dp"
+                android:layout_height="129dp"
+                android:id="@+id/imageView"
+                android:layout_gravity="center_horizontal" />
+
             <EditText
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
@@ -51,6 +57,13 @@
                 android:layout_weight="1"
                 android:hint="@string/phone2" />
 
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_getImage"
+                android:onClick="selectPic" />
 
             <Button
                 android:layout_width="match_parent"

@@ -22,8 +22,14 @@
     <ListView
         android:id="@+id/listContacts"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
     </ListView>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goHome"
+        android:text="@string/go_home"
+        android:layout_gravity="bottom"/>
 
 </LinearLayout>
