@@ -10,4 +10,6 @@
     <string name="search_label">Buscar…</string>
     <string name="button_remove">Remover</string>
     <string name="button_update">Atualizar</string>
+    <string name="button_getImage">Selecionar imagem</string>
+    <string name="go_home">Voltar</string>
 </resources>

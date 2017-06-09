@@ -48,9 +48,12 @@ public class SearchContact extends AppCompatActivity {
 
         ArrayList<Contact> contacts = cr.searchContact(search.getText().toString());
 
-        ArrayAdapter<Contact> adapter = new ArrayAdapter<Contact>(this,
-                android.R.layout.simple_list_item_1, contacts);
-        listView.setAdapter(adapter);
+        if (contacts.size() > 0) {
+            ArrayAdapter<Contact> adapter = new ArrayAdapter<Contact>(this,
+                    android.R.layout.simple_list_item_1, contacts);
+
+            listView.setAdapter(adapter);
+        }
     }
 
     private void showContactDetails(Contact contact) {
@@ -64,4 +67,8 @@ public class SearchContact extends AppCompatActivity {
         startActivity(details);
     }
 
+    public void goHome(View view) {
+        Intent searchContact = new Intent(this, MainActivity.class);
+        startActivity(searchContact);
+    }
 }

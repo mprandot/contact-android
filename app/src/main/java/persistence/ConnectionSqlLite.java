@@ -11,13 +11,14 @@ import android.util.Log;
 public class ConnectionSqlLite extends SQLiteOpenHelper {
 
     private static String DATABASE_NAME = "contacts_db";
-    private static int VERSION = 1;
+    private static int VERSION = 5;
 
     private static String CREATE_CONTACTS_TABLE = "create table contacts (" +
             "id integer primary key autoincrement, " +
             "name text, " +
             "address text, " +
             "city text, " +
+            "pic blob, " +
             "phone1 text, " +
             "phone2 text) ";
 
@@ -35,5 +36,6 @@ public class ConnectionSqlLite extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE contacts;");
         db.execSQL(CREATE_CONTACTS_TABLE);
+        Log.d(getClass().getSimpleName(), "upgraded!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 }
